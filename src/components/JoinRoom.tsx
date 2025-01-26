@@ -1,6 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export const JoinRoom = () => {
+    const navigate = useNavigate();
+
     function joinMeeting() {
         console.log("joining a meeting");
+        navigate("/join-details");
     }
 
     return (

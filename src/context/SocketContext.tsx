@@ -52,7 +52,7 @@ export const SocketProvider: React.FC<Props> = ({ children }) => {
 
         fetchUserFeed();
 
-        const enterRoom = ({ roomId} : { roomId: string }) => {
+        const enterRoom = ({ roomId } : { roomId: string }) => {
             navigate(`/room/${roomId}`); 
         }
 
@@ -63,27 +63,33 @@ export const SocketProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if(!user || !stream) return;
-
-        socket.on("user-joined", ({peerId}) => {
+        console.log("useEffect in SocketProvider triggered");
+        if (!user || !stream) return;
+    
+        // Handle new peer joining
+        socket.on("user-joined", ({ peerId }) => {
+            console.log("User joined:", peerId);
+    
+            // Call the new peer with your stream
             const call = user.call(peerId, stream);
-            console.log("Calling the new peer", peerId);
-            call.on("stream", () => {
-                dispatch(addPeerAction(peerId, stream));
-            })
-        })
-
+            call.on("stream", (remoteStream) => {
+                // Dispatch action to add peer stream to state
+                dispatch(addPeerAction(peerId, remoteStream));
+            });
+        });
+    
+        // Handle incoming calls from other peers
         user.on("call", (call) => {
-            // what to do when other peers on the group call you when u joined
-            console.log("receiving a call");
+            console.log("Receiving call from peer:", call.peer);
+            // Answer the call with your own stream
             call.answer(stream);
-            call.on("stream", () => {
-                dispatch(addPeerAction(call.peer, stream));
-            })
-        })
-
-        socket.emit("ready");
-    }, [user, stream])
+            call.on("stream", (remoteStream) => {
+                // Add the incoming stream to peers state
+                dispatch(addPeerAction(call.peer, remoteStream));
+            });
+        });
+    
+    }, [user, stream, socket]);
 
     return (
         <SocketContext.Provider value={{ socket, user, stream, peers }}>
