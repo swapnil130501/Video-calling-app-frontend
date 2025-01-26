@@ -1,13 +1,24 @@
+import { Link } from "react-router-dom";
+import { sideBarLinks } from "../constants/constants";
+
 export const SideBar: React.FC = () => {
     return (
-        <div className="sticky top-0 left-0 flex h-screen w-1/6 px-4 py-6 bg-gray-700">
-            <div className="text-white">
-                <h1 className="text-xl font-bold mb-4">Sidebar</h1>
-                <ul className="space-y-4">
-                    <li className="hover:bg-gray-600 px-3 py-2 rounded-md cursor-pointer">Item 1</li>
-                    <li className="hover:bg-gray-600 px-3 py-2 rounded-md cursor-pointer">Item 2</li>
-                    <li className="hover:bg-gray-600 px-3 py-2 rounded-md cursor-pointer">Item 3</li>
-                </ul>
+        <div className="sticky top-0 left-0 flex flex-col h-screen w-1/6 px-4 py-6 bg-gray-800">
+            <div className="flex flex-col gap-6">
+                {sideBarLinks.map((it) => {
+                    const isActive = window.location.pathname === it.route;
+                    return (
+                        <Link
+                            to={it.route}
+                            key={it.route}
+                            className={`text-white font-bold text-lg py-2 px-4 rounded-lg hover:bg-indigo-600 ${
+                                isActive ? "bg-indigo-700" : "bg-gray-800"
+                            }`}
+                        >
+                            {it.label}
+                        </Link>
+                    )
+                })}
             </div>
         </div>
     );
