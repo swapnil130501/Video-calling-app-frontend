@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SocketContext } from "../context/SocketContext";
 import UserFeedPlayer from "../components/UserFeedPlayer";
+import { CallControls } from "../components/CallControls";
 
 const Room: React.FC = () => {
     const { id } = useParams();
@@ -17,20 +18,26 @@ const Room: React.FC = () => {
     }, [id, user, stream, socket]);
 
     return (
-        <div className="px-4 py-6 flex flex-col items-center justify-center">
-            Room: { id }
-            <div>
-                Your user feed
-                <UserFeedPlayer stream={stream} />
+        <>
+            <div className="px-4 py-6 flex flex-col items-center justify-center">
+                Room Id: { id }
+                <div>
+                    Your user feed
+                    <UserFeedPlayer stream={stream} />
+                </div>
+
+                <div>
+                    Other user feed
+                    {Object.keys(peers).map((peerId) => (
+                        <UserFeedPlayer key={peerId} stream={peers[peerId].stream} />
+                    ))}
+                </div>
             </div>
 
-            <div>
-                Other user feed
-                {Object.keys(peers).map((peerId) => (
-                    <UserFeedPlayer key={peerId} stream={peers[peerId].stream} />
-                ))}
+            <div className="fixed bottom-0 left-0 w-full">
+                <CallControls stream={stream}/>
             </div>
-        </div>
+        </>
     );
 };
 
