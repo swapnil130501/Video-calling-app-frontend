@@ -15,7 +15,7 @@ const Room: React.FC = () => {
     }, [id, user, socket, peers])
 
     return (
-        <div>
+        <div className="px-4 py-6 flex flex-col items-center justify-center">
             Room: { id }
             <div>
                 Your user feed
