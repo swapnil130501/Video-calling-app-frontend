@@ -31,7 +31,7 @@ const Room: React.FC = () => {
     return (
         <div className="relative h-screen w-full bg-gray-900 flex">
 
-            <div className={`grid ${getGridClass()} gap-2 w-4/5 h-full p-4 `}>
+            <div className={`grid ${getGridClass()} gap-2 w-4/5 h-full p-4 `}style={{ height: 'calc(100vh - 64px)' }}>
                 {/* Render Local User Feed */}
                 {stream && (
                     <div className="w-full h-full bg-black rounded-lg overflow-hidden">
@@ -50,12 +50,12 @@ const Room: React.FC = () => {
                 ))}
             </div>
 
-            <div className="px-4 py-4">
+            <div className="p-4" style={{ height: 'calc(100vh - 64px)' }}>
                 <ChatRoom />
             </div>
 
             {/* Call Controls */}
-            <div className="fixed bottom-0 left-0 w-full">
+            <div className="fixed bottom-0 left-0 w-full h-16 bg-gray-800">
                 <CallControls stream={stream} />
             </div>
         </div>

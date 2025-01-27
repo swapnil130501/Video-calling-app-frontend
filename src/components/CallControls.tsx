@@ -17,7 +17,7 @@ export const CallControls = ({ stream }: { stream: MediaStream }) => {
     }
 
     return (
-        <div className="flex justify-center items-center gap-4 p-4 bg-gray-900 text-white w-full h-16 shadow-lg">
+        <div className="flex justify-center items-center gap-4 p-4 bg-gray-800 text-white w-full h-16 rounded-lg shadow-lg">
             <button
                 onClick={toggleVideo}
                 className={`flex items-center justify-center w-12 h-12 rounded-full ${

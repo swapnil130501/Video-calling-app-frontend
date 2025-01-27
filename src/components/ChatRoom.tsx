@@ -37,7 +37,7 @@ export const ChatRoom: React.FC = () => {
     }, [socket]);
 
     return (
-        <div className="bg-gray-800 p-4 rounded-lg h-1/2 w-96 flex flex-col">
+        <div className="bg-gray-800 p-4 rounded-lg h-full w-96 flex flex-col">
             {/* Message Display */}
             <div className="flex-1 overflow-y-auto mb-4">
                 {messages.map((msg, index) => (
