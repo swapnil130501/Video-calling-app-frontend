@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { SocketContext } from '../context/SocketContext';
 import { UserFeedPlayer } from '../components/UserFeedPlayer';
 import { CallControls } from '../components/CallControls';
+import { ChatRoom } from '../components/ChatRoom';
 
 const Room: React.FC = () => {
     const { id } = useParams();
@@ -28,9 +29,9 @@ const Room: React.FC = () => {
     };
 
     return (
-        <div className="relative h-screen w-full bg-gray-900">
+        <div className="relative h-screen w-full bg-gray-900 flex">
 
-            <div className={`grid ${getGridClass()} gap-2 w-full h-full p-4`}>
+            <div className={`grid ${getGridClass()} gap-2 w-4/5 h-full p-4 `}>
                 {/* Render Local User Feed */}
                 {stream && (
                     <div className="w-full h-full bg-black rounded-lg overflow-hidden">
@@ -47,6 +48,10 @@ const Room: React.FC = () => {
                         <UserFeedPlayer stream={peers[peerId].stream} />
                     </div>
                 ))}
+            </div>
+
+            <div className="px-4 py-4 ">
+                <ChatRoom />
             </div>
 
             {/* Call Controls */}
