@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+# Real-Time Video Calling and Chat Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project is a real-time video calling and chat application built using **WebRTC, Peer.js, WebSockets, and React**. It enables one-on-one and group video calls, along with live chat functionality. The architecture efficiently handles peer-to-peer communication and scales for multiple participants using an SFU (Selective Forwarding Unit) model.
 
-Currently, two official plugins are available:
+## Features
+- **One-on-One and Group Video Calls** using WebRTC
+- **Live Chat** using WebSockets
+- **Signaling Server** with Peer.js for connection establishment
+- **STUN/TURN Server** support for NAT traversal
+- **Scalability** with an SFU-based architecture
+- **User Authentication** with JWT tokens
+- **Call Controls** (Mute, Unmute, End Call, etc.)
+- **Adaptive User Feed** for an optimized meeting experience
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend:** React, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express
+- **Communication:** WebRTC, WebSockets, Peer.js
+- **Servers:** STUN/TURN for NAT traversal
+- **Containerization:** Docker
 
-## Expanding the ESLint configuration
+## Architecture
+### WebRTC vs WebSockets
+- **WebRTC** handles peer-to-peer media streaming with low latency.
+- **WebSockets** provides a persistent, bidirectional communication channel, used for signaling and live chat.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### How It Works
+1. **Signaling & Connection Establishment**: Peer.js assigns unique peer IDs and manages STUN/TURN servers.
+2. **NAT Traversal**: STUN servers determine public IPs, while TURN servers relay media when direct connections fail.
+3. **Media Streaming**: WebRTC establishes a direct connection between peers for low-latency video and audio.
+4. **Scalability with SFU**: WebSockets act as an SFU, forwarding media streams to multiple users in a group call.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
+### Prerequisites
+- Node.js and npm/yarn
+- Docker (optional for containerized deployment)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Steps
+1. Clone both the repositories:
+   ```sh
+   git clone https://github.com/swapnil130501/Video-calling-app-frontend
+   git clone https://github.com/swapnil130501/Video-calling-app-backend
+   cd Video-calling-app-frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the backend server:
+   ```sh
+   npm run dev
+   ```
+4. Start the peer.js server:
+   ```sh
+   peerjs --port 9000 --key peerjs --path /myapp
+   ```
+5. Start the frontend:
+   ```sh
+   npm run dev
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Future Enhancements
+- Implement screen sharing
+- Add background noise suppression
+- Improve UI/UX with animations
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
