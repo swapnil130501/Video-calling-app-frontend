@@ -3,6 +3,8 @@
 ## Overview
 This project is a real-time video calling and chat application built using **WebRTC, Peer.js, WebSockets, and React**. It enables one-on-one and group video calls, along with live chat functionality. The architecture efficiently handles peer-to-peer communication and scales for multiple participants using an SFU (Selective Forwarding Unit) model.
 
+![alt text](<Screenshot 2025-01-31 234205.png>)
+
 ## Features
 - **One-on-One and Group Video Calls** using WebRTC
 - **Live Chat** using WebSockets
@@ -41,7 +43,6 @@ This project is a real-time video calling and chat application built using **Web
    ```sh
    git clone https://github.com/swapnil130501/Video-calling-app-frontend
    git clone https://github.com/swapnil130501/Video-calling-app-backend
-   cd Video-calling-app-frontend
    ```
 2. Install dependencies:
    ```sh
@@ -60,9 +61,9 @@ This project is a real-time video calling and chat application built using **Web
    npm run dev
    ```
 
-## Future Enhancements
+## v2
 - Implement screen sharing
-- Add background noise suppression
+- Add user authentication
 - Improve UI/UX with animations
 
 
