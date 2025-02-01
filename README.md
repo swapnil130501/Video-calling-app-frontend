@@ -3,7 +3,7 @@
 ## Overview
 This project is a real-time video calling and chat application built using **WebRTC, Peer.js, WebSockets, and React**. It enables one-on-one and group video calls, along with live chat functionality. The architecture efficiently handles peer-to-peer communication and scales for multiple participants using an SFU (Selective Forwarding Unit) model.
 
-![alt text](<Screenshot 2025-01-31 234205.png>)
+![Alt Text](assets/img.png)
 
 ## Features
 - **One-on-One and Group Video Calls** using WebRTC
