@@ -35,9 +35,8 @@ This project is a real-time video calling and chat application built using **Web
 
 ## Installation
 ### Prerequisites
-- Node.js and npm/yarn
-- Docker (optional for containerized deployment)
-
+- Node.js and npm
+- Peer.js
 ### Steps
 1. Clone both the repositories:
    ```sh
