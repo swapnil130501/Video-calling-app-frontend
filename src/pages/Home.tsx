@@ -4,7 +4,7 @@ import { SideBar } from "../components/SideBar";
 
 const Home: React.FC = () => {
     return (
-        <div className="flex h-screen bg-gray-900">
+        <div className="flex bg-neutral-100">
             <SideBar />
             <div className="flex flex-col w-full items-center justify-center space-y-6">
                 <CreateRoom />

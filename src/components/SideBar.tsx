@@ -1,21 +1,41 @@
 import { Link } from "react-router-dom";
 import { sideBarLinks } from "../constants/constants";
+import { useState } from "react";
+import { AnimatePresence, motion } from 'motion/react';
 
 export const SideBar: React.FC = () => {
+    const [hovered, setHovered] = useState(null);
+
     return (
-        <div className="sticky top-0 left-0 flex flex-col h-screen w-1/6 px-4 py-6 bg-gray-800">
+        <div className="sticky bg-neutral-200 p-4 min-h-screen w-64 shadow-intense border-r border-neutral-300">
             <div className="flex flex-col gap-6">
-                {sideBarLinks.map((it) => {
-                    const isActive = window.location.pathname === it.route;
+                {sideBarLinks.map((it, idx) => {
                     return (
                         <Link
                             to={it.route}
                             key={it.route}
-                            className={`text-white font-bold text-lg py-2 px-4 rounded-lg hover:bg-indigo-600 ${
-                                isActive ? "bg-indigo-700" : "bg-gray-800"
-                            }`}
+                            className="text-md font-semibold relative text-neutral-800 p-2"
+                            onMouseEnter={() => setHovered(idx)}
+                            onMouseLeave={() => setHovered(null)}
                         >
-                            {it.label}
+                             <AnimatePresence>
+                                {hovered === idx && (
+                                    <motion.span
+                                        layoutId="hovered-highlight"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 500,
+                                            damping: 30,
+                                            duration: 0.2,
+                                        }}
+                                        className="absolute inset-0 bg-neutral-100 rounded-md z-0"
+                                    />
+                                )}
+                            </AnimatePresence>
+                            <span className="relative z-10">{it.label}</span>
                         </Link>
                     )
                 })}
