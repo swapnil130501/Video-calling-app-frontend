@@ -9,7 +9,7 @@ const CreateRoom: React.FC = () => {
     }
 
     return (
-        <button onClick={initRoom} className="bg-neutral-200 text-neutral-800 px-6 py-3 shadow-intense border border-neutral-300 rounded-md hover:bg-neutral-300 transition">
+        <button onClick={initRoom} className="font-semibold text-lg text-white bg-indigo-600 px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700">
             Create a Meeting
         </button>
     )

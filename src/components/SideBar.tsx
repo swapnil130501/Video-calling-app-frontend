@@ -4,17 +4,17 @@ import { useState } from "react";
 import { AnimatePresence, motion } from 'motion/react';
 
 export const SideBar: React.FC = () => {
-    const [hovered, setHovered] = useState(null);
+    const [hovered, setHovered] = useState<any>(null);
 
     return (
-        <div className="sticky bg-neutral-200 p-4 min-h-screen w-64 shadow-intense border-r border-neutral-300">
+        <div className="sticky bg-neutral-800 p-4 min-h-screen w-64 shadow-intense border-r border-neutral-900">
             <div className="flex flex-col gap-6">
                 {sideBarLinks.map((it, idx) => {
                     return (
                         <Link
                             to={it.route}
                             key={it.route}
-                            className="text-md font-semibold relative text-neutral-800 p-2"
+                            className="font-medium relative text-neutral-100 p-2"
                             onMouseEnter={() => setHovered(idx)}
                             onMouseLeave={() => setHovered(null)}
                         >
@@ -31,7 +31,7 @@ export const SideBar: React.FC = () => {
                                             damping: 30,
                                             duration: 0.2,
                                         }}
-                                        className="absolute inset-0 bg-neutral-100 rounded-md z-0"
+                                        className="absolute inset-0 bg-neutral-900 rounded-md z-0"
                                     />
                                 )}
                             </AnimatePresence>

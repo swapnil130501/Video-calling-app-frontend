@@ -29,7 +29,7 @@ const Room: React.FC = () => {
     };
 
     return (
-        <div className="relative h-screen w-full bg-gray-900 flex">
+        <div className="relative h-screen w-full bg-neutral-900 flex">
 
             <div className={`grid ${getGridClass()} gap-2 w-4/5 h-full p-4 `}style={{ height: 'calc(100vh - 64px)' }}>
                 {/* Render Local User Feed */}
